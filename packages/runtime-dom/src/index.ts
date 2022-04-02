@@ -82,6 +82,8 @@ export const createApp = ((...args) => {
       // Reason: potential execution of JS expressions in in-DOM template.
       // The user must make sure the in-DOM template is trusted. If it's
       // rendered by the server, the template should not contain any user data.
+      // 原因:在in- dom模板中可能执行JS表达式。 用户必须确保in-DOM模板是可信的。 
+      // 如果它是由服务器呈现的，那么模板不应该包含任何用户数据。
       component.template = container.innerHTML
       // 2.x compat check
       if (__COMPAT__ && __DEV__) {
@@ -195,6 +197,7 @@ function normalizeContainer(
     container instanceof window.ShadowRoot &&
     container.mode === 'closed'
   ) {
+    // 使用\ ' {mode: "closed"}\ '安装在ShadowRoot上可能会导致不可预知的错误  
     warn(
       `mounting on a ShadowRoot with \`{mode: "closed"}\` may lead to unpredictable bugs`
     )

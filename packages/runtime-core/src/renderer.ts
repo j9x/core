@@ -351,6 +351,7 @@ function baseCreateRenderer(
 
   // Note: functions inside this closure should use `const xxx = () => {}`
   // style in order to prevent being inlined by minifiers.
+  // 注意:这个闭包中的函数应该使用' const xxx =() =>{} '样式，以防止被修改器内联。  
   const patch: PatchFn = (
     n1,
     n2,
@@ -367,6 +368,7 @@ function baseCreateRenderer(
     }
 
     // patching & not same type, unmount old tree
+    // 修补&不相同的类型，卸载 old tree
     if (n1 && !isSameVNodeType(n1, n2)) {
       anchor = getNextHostNode(n1)
       unmount(n1, parentComponent, parentSuspense, true)

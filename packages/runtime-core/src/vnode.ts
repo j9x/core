@@ -346,6 +346,7 @@ export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
     hmrDirtyComponents.has(n2.type as ConcreteComponent)
   ) {
     // HMR only: if the component has been hot-updated, force a reload.
+    // 仅HMR:如果组件已热更新，则强制重新加载。  
     return false
   }
   return n1.type === n2.type && n1.key === n2.key
@@ -363,6 +364,8 @@ let vnodeArgsTransformer:
  * used for creating stubs in the test-utils
  * It is *internal* but needs to be exposed for test-utils to pick up proper
  * typings
+ * 注册createVNode参数转换的内部API  用于在test-utils中创建存根  
+ * 它是*内部的*，但需要暴露，以便测试工具获得适当的检测结果输入  
  */
 export function transformVNodeArgs(transformer?: typeof vnodeArgsTransformer) {
   vnodeArgsTransformer = transformer

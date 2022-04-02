@@ -248,6 +248,7 @@ export const shallowReactiveHandlers = /*#__PURE__*/ extend(
 // Props handlers are special in the sense that it should not unwrap top-level
 // refs (in order to allow refs to be explicitly passed down), but should
 // retain the reactivity of the normal readonly object.
+// Props处理程序的特殊之处是，它不应该打开顶级引用(为了允许引用被显式地传递下去)，但应该保留普通只读对象的反应性。
 export const shallowReadonlyHandlers = /*#__PURE__*/ extend(
   {},
   readonlyHandlers,

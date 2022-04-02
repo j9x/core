@@ -33,6 +33,7 @@ export function popWarningContext() {
 export function warn(msg: string, ...args: any[]) {
   // avoid props formatting or warn handler tracking deps that might be mutated
   // during patch, leading to infinite recursion.
+  // 避免道具格式化或警告处理程序跟踪deps可能在补丁期间发生突变，导致无限递归。 
   pauseTracking()
 
   const instance = stack.length ? stack[stack.length - 1].component : null

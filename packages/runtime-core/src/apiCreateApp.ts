@@ -286,6 +286,7 @@ export function createAppAPI<HostElement>(
           )
           // store app context on the root VNode.
           // this will be set on the root instance on initial mount.
+          // 将应用程序上下文存储在根VNode上。 这将在初始挂载时在根实例上设置。  
           vnode.appContext = context
 
           // HMR root reload
@@ -302,7 +303,7 @@ export function createAppAPI<HostElement>(
           }
           isMounted = true
           app._container = rootContainer
-          // for devtools and telemetry
+          // for devtools and telemetry(用于开发工具和遥测)
           ;(rootContainer as any).__vue_app__ = app
 
           if (__DEV__ || __FEATURE_PROD_DEVTOOLS__) {

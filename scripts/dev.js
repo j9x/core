@@ -32,6 +32,7 @@ const relativeOutfile = relative(process.cwd(), outfile)
 
 // resolve externals
 // TODO this logic is largely duplicated from rollup.config.js
+// 这个逻辑很大程度上复制自rollup.config.js  
 let external = []
 if (!inlineDeps) {
   // cjs & esm-bundler: external all deps

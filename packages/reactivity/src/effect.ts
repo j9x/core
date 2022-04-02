@@ -27,6 +27,8 @@ export let trackOpBit = 1
  * The bitwise track markers support at most 30 levels of recursion.
  * This value is chosen to enable modern JS engines to use a SMI on all platforms.
  * When recursion depth is greater, fall back to using a full cleanup.
+ * 按位跟踪标记最多支持30个递归级别。 选择这个值是为了使现代JS引擎能够在所有平台上使用SMI。 
+ * 当递归深度更大时，退回到使用完全清理。
  */
 const maxMarkerBits = 30
 
