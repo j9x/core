@@ -135,8 +135,10 @@ export const initSlots = (
     if (type) {
       // users can get the shallow readonly version of the slots object through `this.$slots`,
       // we should avoid the proxy object polluting the slots of the internal instance
+      // 用户可以通过“this.$slots”获得槽位对象的浅层只读版本。 我们应该避免代理对象污染内部实例的槽位  
       instance.slots = toRaw(children as InternalSlots)
       // make compiler marker non-enumerable
+      // 使编译器标记不可枚举
       def(children as InternalSlots, '_', type)
     } else {
       normalizeObjectSlots(

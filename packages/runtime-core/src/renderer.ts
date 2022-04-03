@@ -1196,6 +1196,7 @@ function baseCreateRenderer(
   ) => {
     // 2.x compat may pre-create the component instance before actually
     // mounting
+    // Compat可以在实际安装之前预先创建组件实例  
     const compatMountInstance =
       __COMPAT__ && initialVNode.isCompatRoot && initialVNode.component
     const instance: ComponentInternalInstance =
@@ -1216,11 +1217,13 @@ function baseCreateRenderer(
     }
 
     // inject renderer internals for keepAlive
+    // 注入渲染器内部的keepAlive
     if (isKeepAlive(initialVNode)) {
       ;(instance.ctx as KeepAliveContext).renderer = internals
     }
 
     // resolve props and slots for setup context
+    // 为setup上下文解析props和slots
     if (!(__COMPAT__ && compatMountInstance)) {
       if (__DEV__) {
         startMeasure(instance, `init`)
@@ -1233,11 +1236,14 @@ function baseCreateRenderer(
 
     // setup() is async. This component relies on async logic to be resolved
     // before proceeding
+    // setup()是异步的。 此组件在继续之前依赖于异步逻辑进行解析  
     if (__FEATURE_SUSPENSE__ && instance.asyncDep) {
       parentSuspense && parentSuspense.registerDep(instance, setupRenderEffect)
 
       // Give it a placeholder if this is not hydration
       // TODO handle self-defined fallback
+      // 给它一个占位符，如果这不是hydration 
+      // 处理自定义的回退  
       if (!initialVNode.el) {
         const placeholder = (instance.subTree = createVNode(Comment))
         processCommentNode(null, placeholder, container!, anchor)
@@ -1544,10 +1550,11 @@ function baseCreateRenderer(
     }
 
     // create reactive effect for rendering
+    // 为渲染创建反应效果
     const effect = (instance.effect = new ReactiveEffect(
       componentUpdateFn,
       () => queueJob(instance.update),
-      instance.scope // track it in component's effect scope
+      instance.scope // track it in component's effect scope(在组件的影响范围内跟踪它)
     ))
 
     const update = (instance.update = effect.run.bind(effect) as SchedulerJob)

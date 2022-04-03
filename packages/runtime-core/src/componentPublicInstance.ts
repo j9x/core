@@ -266,6 +266,7 @@ export const PublicInstanceProxyHandlers: ProxyHandler<any> = {
       instance
 
     // for internal formatters to know that this is a Vue instance
+    // 以便内部格式化器知道这是一个Vue实例  
     if (__DEV__ && key === '__isVue') {
       return true
     }
@@ -274,6 +275,9 @@ export const PublicInstanceProxyHandlers: ProxyHandler<any> = {
     // this allows even properties that start with _ or $ to be used - so that
     // it aligns with the production behavior where the render fn is inlined and
     // indeed has access to all declared variables.
+    // 在开发过程中优先设置<script setup>绑定。
+    // 这甚至允许使用以_或$开头的属性-这样它就与生产行为一致，
+    // 渲染fn被内联，并且确实可以访问所有声明的变量。
     if (
       __DEV__ &&
       setupState !== EMPTY_OBJ &&
@@ -289,6 +293,9 @@ export const PublicInstanceProxyHandlers: ProxyHandler<any> = {
     // is the multiple hasOwn() calls. It's much faster to do a simple property
     // access on a plain object, so we use an accessCache object (with null
     // prototype) to memoize what access type a key corresponds to.
+    // 在渲染过程中，这个getter在渲染上下文的每个属性访问中都被调用，这是一个主要的热点。 
+    // 其中开销最大的部分是多个hasOwn()调用。 在普通对象上进行简单的属性访问要快得多，
+    // 因此我们使用accessCache对象(带空原型)来记住键对应的访问类型。  
     let normalizedProps
     if (key[0] !== '$') {
       const n = accessCache![key]
@@ -503,6 +510,8 @@ export const RuntimeCompiledPublicInstanceProxyHandlers = /*#__PURE__*/ extend(
 // In dev mode, the proxy target exposes the same properties as seen on `this`
 // for easier console inspection. In prod mode it will be an empty object so
 // these properties definitions can be skipped.
+// 在dev模式下，代理目标暴露了与' this '相同的属性，以便于控制台检查。 
+// 在prod模式下，它将是一个空对象，因此这些属性定义可以被跳过。 
 export function createDevRenderContext(instance: ComponentInternalInstance) {
   const target: Record<string, any> = {}
 

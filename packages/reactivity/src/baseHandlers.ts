@@ -164,6 +164,7 @@ function createSetter(shallow = false) {
       }
     } else {
       // in shallow mode, objects are set as-is regardless of reactive or not
+      // 在浅层模式中，对象被设置为原样，而不管是否响应性  
     }
 
     const hadKey =
@@ -172,6 +173,7 @@ function createSetter(shallow = false) {
         : hasOwn(target, key)
     const result = Reflect.set(target, key, value, receiver)
     // don't trigger if target is something up in the prototype chain of original
+    // 如果目标在原型链上，不要触发  
     if (target === toRaw(receiver)) {
       if (!hadKey) {
         trigger(target, TriggerOpTypes.ADD, key, value)

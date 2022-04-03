@@ -462,9 +462,9 @@ export function createComponentInstance(
     type,
     parent,
     appContext,
-    root: null!, // to be immediately set
+    root: null!, // to be immediately set (立即设定)
     next: null,
-    subTree: null!, // will be set synchronously right after creation
+    subTree: null!, // will be set synchronously right after creation(将在创建后立即同步设置)
     effect: null!,
     update: null!, // will be set synchronously right after creation
     scope: new EffectScope(true /* detached */),
@@ -513,6 +513,7 @@ export function createComponentInstance(
 
     // lifecycle hooks
     // not using enums here because it results in computed properties
+    // 这里不使用枚举，因为它会导致计算属性  
     isMounted: false,
     isUnmounted: false,
     isDeactivated: false,
@@ -540,6 +541,7 @@ export function createComponentInstance(
   instance.emit = emit.bind(null, instance)
 
   // apply custom element special handling
+  // 应用自定义元素特殊处理
   if (vnode.ce) {
     vnode.ce(instance)
   }
@@ -628,9 +630,11 @@ function setupStatefulComponent(
     }
   }
   // 0. create render proxy property access cache
+  // 0. 创建呈现代理属性访问缓存
   instance.accessCache = Object.create(null)
   // 1. create public instance / render proxy
   // also mark it raw so it's never observed
+  // 1.  创建公共实例/渲染代理也要将其标记为原始的，这样它就不会被观察到  
   instance.proxy = markRaw(new Proxy(instance.ctx, PublicInstanceProxyHandlers))
   if (__DEV__) {
     exposePropsOnRenderContext(instance)

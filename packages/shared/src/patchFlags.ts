@@ -7,6 +7,11 @@
  *
  * Patch flags can be combined using the | bitwise operator and can be checked
  * using the & operator, e.g.
+ * 补丁标志是编译器生成的优化提示。  
+ * 当diff过程中遇到一个带有dynamicChildren的块时，算法进入“优化模式”。 
+ * 在这种模式下，我们知道vdom是由编译器生成的呈现函数，因此算法只需要  
+ * 处理由这些补丁标志显式标记的更新。 
+ * 补丁标志可以使用 | 位操作符进行组合，也可以使用&操作符进行检查，例如。  
  *
  * ```js
  * const flag = TEXT | CLASS
@@ -15,6 +20,7 @@
  *
  * Check the `patchElement` function in '../../runtime-core/src/renderer.ts' to see how the
  * flags are handled during diff.
+ * 检查'../../runtime-core/src/renderer.ts中的' patchElement '函数。查看在diff期间如何处理标志。
  */
 export const enum PatchFlags {
   /**

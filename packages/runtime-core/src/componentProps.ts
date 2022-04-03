@@ -337,6 +337,7 @@ function setFullProps(
   if (rawProps) {
     for (let key in rawProps) {
       // key, ref are reserved and never passed down
+      // key，ref是保留的，从来没有传递下来
       if (isReservedProp(key)) {
         continue
       }

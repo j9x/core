@@ -13,6 +13,7 @@ export class EffectScope {
   /**
    * track a child scope's index in its parent's scopes array for optimized
    * removal
+   * 在父范围数组中跟踪子范围的索引，以优化删除  
    */
   private index: number | undefined
 
@@ -62,6 +63,7 @@ export class EffectScope {
         }
       }
       // nested scope, dereference from parent to avoid memory leaks
+      // 嵌套作用域，解除对父对象的引用以避免内存泄漏  
       if (this.parent && !fromParent) {
         // optimized O(1) removal
         const last = this.parent.scopes!.pop()
