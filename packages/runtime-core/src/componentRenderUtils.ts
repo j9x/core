@@ -31,6 +31,8 @@ import {
  * dev only flag to track whether $attrs was used during render.
  * If $attrs was used during render then the warning for failed attrs
  * fallthrough can be suppressed.
+ * Dev唯一的标志来跟踪$attrs是否在渲染期间被使用。 
+ * 如果在渲染期间使用了$attrs，那么失败的attrs下降的警告可以被抑制。  
  */
 let accessedAttrs: boolean = false
 
@@ -70,6 +72,8 @@ export function renderComponentRoot(
     if (vnode.shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
       // withProxy is a proxy with a different `has` trap only for
       // runtime-compiled render functions using `with` block.
+      // withProxy是一个具有不同的' has '陷阱的代理  
+      // 运行时编译的渲染函数使用' with '块。  
       const proxyToUse = withProxy || proxy
       result = normalizeVNode(
         render!.call(
@@ -120,6 +124,9 @@ export function renderComponentRoot(
   // attr merging
   // in dev mode, comments are preserved, and it's possible for a template
   // to have comments along side the root element which makes it a fragment
+  // attr合并  
+  // 在dev模式下，注释是保留的，对于模板也是可以的  
+  // 在根元素旁边有注释，使其成为一个片段  
   let root = result
   let setRoot: ((root: VNode) => void) | undefined = undefined
   if (

@@ -455,6 +455,7 @@ function createBaseVNode(
 
   // validate key
   if (__DEV__ && vnode.key !== vnode.key) {
+    // 使用无效键创建的VNode (NaN)  
     warn(`VNode created with invalid key (NaN). VNode type:`, vnode.type)
   }
 
@@ -560,8 +561,8 @@ function _createVNode(
 
   if (__DEV__ && shapeFlag & ShapeFlags.STATEFUL_COMPONENT && isProxy(type)) {
     type = toRaw(type)
-    // Vue收到一个组件,它是一个反应对象。这可能导致不必要的性能开销,并且应该避免通过标记组件与
-    // markRaw 或使用 shallowRef 而不是 ref 组件,该组件是有反应的: 
+    // Vue收到一个组件,它是一个响应对象。这可能导致不必要的性能开销,并且应该避免通过标记组件与
+    // markRaw 或使用 shallowRef 而不是 ref 组件,该组件是有响应的: 
     warn(
       `Vue received a Component which was made a reactive object. This can ` +
         `lead to unnecessary performance overhead, and should be avoided by ` +

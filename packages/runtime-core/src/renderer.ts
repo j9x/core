@@ -1427,6 +1427,8 @@ function baseCreateRenderer(
         // activated hook for keep-alive roots.
         // #1742 activated hook must be accessed after first render
         // since the hook may be injected by a child keep-alive
+        // 激活钩保持活根。
+        // #1742被激活的钩子必须在第一次渲染后被访问，因为钩子可能被一个child keep-alive注入  
         if (initialVNode.shapeFlag & ShapeFlags.COMPONENT_SHOULD_KEEP_ALIVE) {
           instance.a && queuePostRenderEffect(instance.a, parentSuspense)
           if (

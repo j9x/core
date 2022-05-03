@@ -15,6 +15,8 @@ import { ComputedRefImpl } from './computed'
 // Conceptually, it's easier to think of a dependency as a Dep class
 // which maintains a Set of subscribers, but we simply store them as
 // raw Sets to reduce memory overhead.
+// 存储{target -> key -> dep}连接的主WeakMap。 从概念上讲，
+// 将依赖项看作维护订阅者集的Dep类更容易，但我们只是将它们存储为原始集，以减少内存开销。 
 type KeyToDepMap = Map<any, Dep>
 const targetMap = new WeakMap<any, KeyToDepMap>()
 
@@ -223,7 +225,7 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
 export function trackEffects(
   dep: Dep,
   debuggerEventExtraInfo?: DebuggerEventExtraInfo
-) {
+) { 
   let shouldTrack = false
   if (effectTrackDepth <= maxMarkerBits) {
     if (!newTracked(dep)) {

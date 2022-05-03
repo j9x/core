@@ -88,6 +88,10 @@ export function queueJob(job: SchedulerJob) {
   // if the job is a watch() callback, the search will start with a +1 index to
   // allow it recursively trigger itself - it is the user's responsibility to
   // ensure it doesn't end up in an infinite loop.
+  // 重复数据删除搜索使用Array.includes()的startIndex参数，
+  // 默认情况下，搜索索引包含正在运行的当前作业，
+  // 因此它不能再次递归地触发自己。 如果任务是一个watch()回调，搜索将以+1索引开始，
+  // 以允许它递归地触发自己——用户有责任确保它不会以无限循环结束。  
   if (
     (!queue.length ||
       !queue.includes(

@@ -547,10 +547,12 @@ export function applyOptions(instance: ComponentInternalInstance) {
   const ctx = instance.ctx
 
   // do not cache property access on public proxy during state initialization
+  // 在状态初始化期间没有在公共代理上缓存属性访问  
   shouldCacheAccess = false
 
   // call beforeCreate first before accessing other options since
   // the hook may mutate resolved options (#2791)
+  // 在访问其他选项之前，请先调用beforecate，因为钩子可能会改变已解析的选项  
   if (options.beforeCreate) {
     callHook(options.beforeCreate, instance, LifecycleHooks.BEFORE_CREATE)
   }
